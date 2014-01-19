@@ -275,6 +275,8 @@ enum lm3s_clken {
 	RCC_GPIOC,
 	RCC_GPIOD,
 	RCC_GPIOE,
+	RCC_GPIOF,
+	RCC_GPIOG,
 
 	RCC_DMA = (((uint32_t)&SYSCTL_RCGC2 - SYSCTL_BASE) << 5) | 13,
 
@@ -303,6 +305,7 @@ enum lm3s_clken {
 	RCC_PWM0 = (((uint32_t)&SYSCTL_RCGC0 - SYSCTL_BASE) << 5) | 20,
 
 	RCC_QEI0 = (((uint32_t)&SYSCTL_RCGC1 - SYSCTL_BASE) << 5) | 8,
+	RCC_QEI1,
 
 
 	/*
@@ -321,6 +324,8 @@ enum lm3s_clken {
 	SCC_GPIOC,
 	SCC_GPIOD,
 	SCC_GPIOE,
+	SCC_GPIOF,
+	SCC_GPIOG,
 
 	SCC_DMA = (((uint32_t)&SYSCTL_SCGC2 - SYSCTL_BASE) << 5) | 13,
 
@@ -349,7 +354,7 @@ enum lm3s_clken {
 	SCC_PWM0 = (((uint32_t)&SYSCTL_SCGC0 - SYSCTL_BASE) << 5) | 20,
 
 	SCC_QEI0 = (((uint32_t)&SYSCTL_SCGC1 - SYSCTL_BASE) << 5) | 8,
-	
+	SCC_QEI1,
 
 	/*
 	 * Deep-sleep clock control
@@ -367,6 +372,8 @@ enum lm3s_clken {
 	DCC_GPIOC,
 	DCC_GPIOD,
 	DCC_GPIOE,
+	DCC_GPIOF,
+	DCC_GPIOG,
 
 	DCC_DMA = (((uint32_t)&SYSCTL_DCGC2 - SYSCTL_BASE) << 5) | 13,
 
@@ -395,6 +402,7 @@ enum lm3s_clken {
 	DCC_PWM0 = (((uint32_t)&SYSCTL_DCGC0 - SYSCTL_BASE) << 5) | 20,
 
 	DCC_QEI0 = (((uint32_t)&SYSCTL_DCGC1 - SYSCTL_BASE) << 5) | 8,
+	DCC_QEI1,
 };
 
 /* ============================================================================

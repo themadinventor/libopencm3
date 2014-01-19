@@ -81,6 +81,7 @@ Alexandru Gagniuc <mr.nuke.me@gmail.com>
 #define SYSCTL_RCC	SYSTEMCONTROL_RCC
 #define SYSCTL_RCC2	SYSTEMCONTROL_RCC2
 #define SYSCTL_RIS	SYSTEMCONTROL_RIS
+#define SYSCTL_MISC	SYSTEMCONTROL_MISC
 
 /**
  * @defgroup rcc_low_level Low-level clock control API
@@ -455,16 +456,23 @@ void rcc_sysclk_config(enum osc_src src, enum xtal_t xtal, uint8_t pll_div400)
 	/* Enable the main oscillator, if needed */
 	if (src == OSCSRC_MOSC) {
 		rcc_enable_main_osc();
+		int delay;
+		for (delay=0; delay<100000; delay++) {
+			__asm ("nop");
+		}
 	}
+
+	/* Set XTAL value */
+	rcc_configure_xtal(xtal);
 
 	/* Make RCC2 override RCC */
 	rcc_enable_rcc2();
 
-	/* Set XTAL value to 16MHz */
-	rcc_configure_xtal(xtal);
 	/* Set the oscillator source */
 	rcc_set_osc_source(src);
 	if (pll_div400) {
+		/* Clear PLL Lock insterrupt flag */
+		SYSCTL_MISC = SYSCTL_RIS_PLLLRIS;
 		/* Enable the PLL */
 		rcc_pll_on();
 		/* Configure the PLL to the divisor we want */

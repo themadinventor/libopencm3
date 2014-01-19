@@ -589,9 +589,12 @@ static usbd_device *lm3s_usbd_init(void)
 
 	/* Start the USB clock */
 	periph_clock_enable(RCC_USB0);
+	__asm__("nop"); __asm__("nop"); __asm__("nop");
+
 	/* Enable the USB PLL interrupts - used to assert PLL lock */
 	SYSCTL_IMC |= (SYSCTL_IMC_USBPLLLIM | SYSCTL_IMC_PLLLIM);
 	rcc_usb_pll_on();
+	__asm__("nop"); __asm__("nop"); __asm__("nop");
 
 	/* Make sure we're disconnected. We'll reconnect later */
 	lm3s_usb_soft_disconnect();
