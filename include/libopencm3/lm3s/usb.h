@@ -159,6 +159,9 @@
 /* USB Device RESUME Interrupt Status and Clear */
 #define USB_DRISC			MMIO32(USB_BASE + 0x418)
 
+/* USB General-Purpose Control and Status */
+#define USB_GPCS			MMIO32(USB_BASE + 0x41C)
+
 /* USB DMA Select */
 #define USB_DMASEL			MMIO32(USB_BASE + 0x450)
 
